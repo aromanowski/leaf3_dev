@@ -1,0 +1,14 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.html
+*.pdf
+*.png
+*.tiff
+*.jpg
+*.tab
+comp/correlation/*
+comp/DE/*
+comp/gene_plots/*
+!comp/DE/selected_genes/*.txt
