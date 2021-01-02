@@ -16,3 +16,4 @@ comp/gene_plots/*
 comp/heatmaps/*
 !comp/DE/selected_genes/
 leaf3_dev.Rproj
+.Rproj.user

@@ -943,19 +943,21 @@ universe <- read.csv2(file = paste0(basedir,"/blade.genes.CPM.normalised.values.
                       sep = "\t",
                       header = TRUE,
                       dec = ".")
+colnames(universe)[1] <- "Gene_ID"
+rownames(universe) <- universe$Gene_ID
 universe <- rownames(universe)
 
 # Set cut-off values
 logFC <- 0.58
-fdr.gen <- 0.1
+fdr.gen <- 0.05
 
 # Get GO terms for 00-primordiaDE
 project <- paste0(basedir,"/DE/")
 sub_project = "GO"
 all_genes <- read_tsv(file = paste0(basedir,"/DE/00-primordiaDE.tab"))
-index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #3046
-index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #1190
-index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1856
+index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #3046 - 2410
+index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #1190 - 923
+index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1856 - 1487
 dir.create(paste0(project, "/", sub_project, "/00-primordiaDE"))
 universe <- universe
 PValue = 1 # cut-off set to 1 to retrieve the full list of GO terms
@@ -979,9 +981,9 @@ setwd(basedir)
 project <- paste0(basedir,"/DE/")
 sub_project = "GO"
 all_genes <- read_tsv(file = paste0(basedir,"/DE/01-blade_d16_FR06_vs_WLDE.tab"))
-index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #2069
-index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #824
-index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1245
+index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #2069 - 1570
+index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #824 - 608
+index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1245 - 962
 dir.create(paste0(project, "/", sub_project, "/01-blade_d16_FR06_vs_WLDE"))
 universe <- universe
 PValue = 1
@@ -1006,9 +1008,9 @@ setwd(basedir)
 project <- paste0(basedir,"/DE/")
 sub_project = "GO"
 all_genes <- read_tsv(file = paste0(basedir,"/DE/02-blade_d20_FR06_vs_WLDE.tab"))
-index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #2529
-index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #1142
-index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1387
+index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #2529 - 1962
+index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #1142 - 865
+index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1387 - 1097
 dir.create(paste0(project, "/", sub_project, "/02-blade_d20_FR06_vs_WLDE"))
 universe <- universe
 PValue = 1
@@ -1034,9 +1036,9 @@ setwd(basedir)
 project <- paste0(basedir,"/DE/")
 sub_project = "GO"
 all_genes <- read_tsv(file = paste0(basedir,"/DE/03-blade_d20_FR18_vs_WLDE.tab"))
-index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #3011
-index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #1478
-index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1533
+index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #3011 - 2440
+index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #1478 - 1212
+index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #1533 - 1228
 dir.create(paste0(project, "/", sub_project, "/03-blade_d20_FR18_vs_WLDE"))
 universe <- universe
 PValue = 1
@@ -1062,9 +1064,9 @@ setwd(basedir)
 project <- paste0(basedir,"/DE/")
 sub_project = "GO"
 all_genes <- read_tsv(file = paste0(basedir,"/DE/04-blade_d20_FR18_vs_FR06DE.tab"))
-index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #26
-index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #22
-index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #4
+index_ALL <- which(abs(all_genes$logFC) > logFC & all_genes$fdr.gen < fdr.gen) #26 - 7
+index_UP <- which(all_genes$logFC > logFC & all_genes$fdr.gen < fdr.gen) #22 - 6
+index_DOWN <- which(all_genes$logFC < -logFC & all_genes$fdr.gen < fdr.gen) #4 - 1
 dir.create(paste0(project, "/", sub_project, "/04-blade_d20_FR18_vs_FR06DE"))
 universe <- universe
 PValue = 1
@@ -1127,7 +1129,7 @@ gene.data.d20.lt <- read.delim("DE/03-blade_d20_FR18_vs_WLDE_full.tab", row.name
 
 # Set cut-off values
 logFC <- 0.58
-fdr.gen <- 0.1
+fdr.gen <- 0.05
 p.value <- 0.05
 
 # Create dir
@@ -1139,7 +1141,7 @@ universe <- rownames(gene.data.d13)
 gene.data <- data.frame(gene.data.d13$logFC, row.names = rownames(gene.data.d13))
 
 # Down
-genes <- gene.data.d13$PValue[which((gene.data.d13$logFC < -logFC) & gene.data.d13$fdr.gen < fdr.gen)] #1856
+genes <- gene.data.d13$PValue[which((gene.data.d13$logFC < -logFC) & gene.data.d13$fdr.gen < fdr.gen)] #1856 - 1487
 names(genes) <- row.names(gene.data.d13)[which((gene.data.d13$logFC < -logFC) & gene.data.d13$fdr.gen < fdr.gen)]
 genes_KEGGresult_down<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_down[which(genes_KEGGresult_down$p.value < p.value),], "d13.down", paste0(basedir,"/DE/KEGG/d13_down"), gene.data, pathways)
@@ -1158,7 +1160,7 @@ write.table(kegg.cp.results[which(kegg.cp.results$pvalue < p.value),], file = pa
 rm(kegg.cp, kegg.cp.results)
 
 # Up
-genes<-gene.data.d13$PValue[which((gene.data.d13$logFC > logFC) & gene.data.d13$fdr.gen < fdr.gen)] #1190
+genes<-gene.data.d13$PValue[which((gene.data.d13$logFC > logFC) & gene.data.d13$fdr.gen < fdr.gen)] #1190 - 923
 names(genes) <- row.names(gene.data.d13)[which((gene.data.d13$logFC > logFC) & gene.data.d13$fdr.gen < fdr.gen)]
 genes_KEGGresult_up<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_up[which(genes_KEGGresult_up$p.value < p.value),], "d13.up", paste0(basedir,"/DE/KEGG/d13_up"), gene.data, pathways)
@@ -1180,7 +1182,7 @@ rm(kegg.cp, kegg.cp.results)
 # Get enrichment for d16 dataset
 gene.data <- data.frame(gene.data.d16$logFC, row.names = rownames(gene.data.d16))
 # Down
-genes <- gene.data.d16$PValue[which((gene.data.d16$logFC < -logFC) & gene.data.d16$fdr.gen < fdr.gen)] #1245
+genes <- gene.data.d16$PValue[which((gene.data.d16$logFC < -logFC) & gene.data.d16$fdr.gen < fdr.gen)] #1245 - 962
 names(genes) <- row.names(gene.data.d16)[which((gene.data.d16$logFC < -logFC) & gene.data.d16$fdr.gen < fdr.gen)]
 genes_KEGGresult_down<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_down[which(genes_KEGGresult_down$p.value < p.value),], "d16.down", paste0(basedir,"/DE/KEGG/d16_down"), gene.data, pathways)
@@ -1199,7 +1201,7 @@ write.table(kegg.cp.results[which(kegg.cp.results$pvalue < p.value),], file = pa
 rm(kegg.cp, kegg.cp.results)
 
 # Up
-genes<-gene.data.d16$PValue[which((gene.data.d16$logFC > logFC) & gene.data.d16$fdr.gen < fdr.gen)] #824
+genes<-gene.data.d16$PValue[which((gene.data.d16$logFC > logFC) & gene.data.d16$fdr.gen < fdr.gen)] #824 - 608
 names(genes) <- row.names(gene.data.d16)[which((gene.data.d16$logFC > logFC) & gene.data.d16$fdr.gen < fdr.gen)]
 genes_KEGGresult_up<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_up[which(genes_KEGGresult_up$p.value < p.value),], "d16.up", paste0(basedir,"/DE/KEGG/d16_up"), gene.data, pathways)
@@ -1221,7 +1223,7 @@ rm(kegg.cp, kegg.cp.results)
 # Get enrichment for d20 dataset
 gene.data <- data.frame(gene.data.d20$logFC, row.names = rownames(gene.data.d20))
 # Down
-genes <- gene.data.d20$PValue[which((gene.data.d20$logFC < -logFC) & gene.data.d20$fdr.gen < fdr.gen)] #1387
+genes <- gene.data.d20$PValue[which((gene.data.d20$logFC < -logFC) & gene.data.d20$fdr.gen < fdr.gen)] #1387 - 1097
 names(genes) <- row.names(gene.data.d20)[which((gene.data.d20$logFC < -logFC) & gene.data.d20$fdr.gen < fdr.gen)]
 genes_KEGGresult_down<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_down[which(genes_KEGGresult_down$p.value < p.value),], "d20.down", paste0(basedir,"/DE/KEGG/d20_down"), gene.data, pathways)
@@ -1240,7 +1242,7 @@ write.table(kegg.cp.results[which(kegg.cp.results$pvalue < p.value),], file = pa
 rm(kegg.cp, kegg.cp.results)
 
 # Up
-genes<-gene.data.d20$PValue[which((gene.data.d20$logFC > logFC) & gene.data.d20$fdr.gen < fdr.gen)] #1142
+genes<-gene.data.d20$PValue[which((gene.data.d20$logFC > logFC) & gene.data.d20$fdr.gen < fdr.gen)] #1142 - 865
 names(genes) <- row.names(gene.data.d20)[which((gene.data.d20$logFC > logFC) & gene.data.d20$fdr.gen < fdr.gen)]
 genes_KEGGresult_up<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_up[which(genes_KEGGresult_up$p.value < p.value),], "d20.up", paste0(basedir,"/DE/KEGG/d20_up"), gene.data, pathways)
@@ -1262,7 +1264,7 @@ rm(kegg.cp, kegg.cp.results)
 # Get enrichment for d20.lt dataset
 gene.data <- data.frame(gene.data.d20.lt$logFC, row.names = rownames(gene.data.d20.lt))
 # Down
-genes <- gene.data.d20.lt$PValue[which((gene.data.d20.lt$logFC < -logFC) & gene.data.d20.lt$fdr.gen < fdr.gen)] #1533
+genes <- gene.data.d20.lt$PValue[which((gene.data.d20.lt$logFC < -logFC) & gene.data.d20.lt$fdr.gen < fdr.gen)] #1533 - 1228
 names(genes) <- row.names(gene.data.d20.lt)[which((gene.data.d20.lt$logFC < -logFC) & gene.data.d20.lt$fdr.gen < fdr.gen)]
 genes_KEGGresult_down<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_down[which(genes_KEGGresult_down$p.value < p.value),], "d20.lt.down", paste0(basedir,"/DE/KEGG/d20.lt_down"), gene.data, pathways)
@@ -1281,7 +1283,7 @@ write.table(kegg.cp.results[which(kegg.cp.results$pvalue < p.value),], file = pa
 rm(kegg.cp, kegg.cp.results)
 
 # Up
-genes<-gene.data.d20.lt$PValue[which((gene.data.d20.lt$logFC > logFC) & gene.data.d20.lt$fdr.gen < fdr.gen)] #1478
+genes<-gene.data.d20.lt$PValue[which((gene.data.d20.lt$logFC > logFC) & gene.data.d20.lt$fdr.gen < fdr.gen)] #1478 - 1212
 names(genes) <- row.names(gene.data.d20.lt)[which((gene.data.d20.lt$logFC > logFC) & gene.data.d20.lt$fdr.gen < fdr.gen)]
 genes_KEGGresult_up<-pathwayEnrichment(genes, genes.by.pathway, pathways, universe)
 drawKEGG(genes_KEGGresult_up[which(genes_KEGGresult_up$p.value < p.value),], "d20.lt.up", paste0(basedir,"/DE/KEGG/d20.lt_up"), gene.data, pathways)
@@ -1377,10 +1379,10 @@ gene.data.d13 <- read.delim(file="00-primordiaDE_full.tab", sep="\t", stringsAsF
 gene.data.d16 <- read.delim(file="01-blade_d16_FR06_vs_WLDE_full.tab", sep="\t", stringsAsFactors = FALSE, header = TRUE, dec= ".")
 gene.data.d20 <- read.delim(file="02-blade_d20_FR06_vs_WLDE_full.tab", sep="\t", stringsAsFactors = FALSE, header = TRUE, dec= ".")
 gene.data.d20.lt <- read.delim(file="03-blade_d20_FR18_vs_WLDE_full.tab", sep="\t", stringsAsFactors = FALSE, header = TRUE, dec= ".")
-degs.d13 <- gene.data.d13[which(abs(gene.data.d13$logFC) > logFC & gene.data.d13$PValue < p.value & gene.data.d13$fdr.gen < fdr.gen),] # 3046
-degs.d16 <- gene.data.d16[which(abs(gene.data.d16$logFC) > logFC & gene.data.d16$PValue < p.value & gene.data.d16$fdr.gen < fdr.gen),] # 2069
-degs.d20 <- gene.data.d20[which(abs(gene.data.d20$logFC) > logFC & gene.data.d20$PValue < p.value & gene.data.d20$fdr.gen < fdr.gen),] # 2529
-degs.d20.lt <- gene.data.d20.lt[which(abs(gene.data.d20.lt$logFC) > logFC & gene.data.d20.lt$PValue < p.value & gene.data.d20.lt$fdr.gen < fdr.gen),] # 3011
+degs.d13 <- gene.data.d13[which(abs(gene.data.d13$logFC) > logFC & gene.data.d13$PValue < p.value & gene.data.d13$fdr.gen < fdr.gen),] # 3046 - 2410
+degs.d16 <- gene.data.d16[which(abs(gene.data.d16$logFC) > logFC & gene.data.d16$PValue < p.value & gene.data.d16$fdr.gen < fdr.gen),] # 2069 - 1570
+degs.d20 <- gene.data.d20[which(abs(gene.data.d20$logFC) > logFC & gene.data.d20$PValue < p.value & gene.data.d20$fdr.gen < fdr.gen),] # 2529 - 1962
+degs.d20.lt <- gene.data.d20.lt[which(abs(gene.data.d20.lt$logFC) > logFC & gene.data.d20.lt$PValue < p.value & gene.data.d20.lt$fdr.gen < fdr.gen),] # 3011 - 2440
 all.degs <- unique(c(degs.d13$Gene_ID, degs.d16$Gene_ID, degs.d20$Gene_ID, degs.d20.lt$Gene_ID)) #6357
 
 gene.data.tp.combined <- data.frame(Gene_ID = all.degs,
