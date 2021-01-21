@@ -949,7 +949,7 @@ universe <- rownames(universe)
 
 # Set cut-off values
 logFC <- 0.58
-fdr.gen <- 0.05
+fdr.gen <- 0.1
 
 # Get GO terms for 00-primordiaDE
 project <- paste0(basedir,"/DE/")
@@ -1129,7 +1129,7 @@ gene.data.d20.lt <- read.delim("DE/03-blade_d20_FR18_vs_WLDE_full.tab", row.name
 
 # Set cut-off values
 logFC <- 0.58
-fdr.gen <- 0.05
+fdr.gen <- 0.1
 p.value <- 0.05
 
 # Create dir
@@ -1699,9 +1699,9 @@ multigeneplot6 <- ggplot(data = tgc, aes(x = day, y = logCPM, color = treatment,
 
 multigeneplot6
 
-##########################################################################
-# Re-use previous section to plot TFs and hormone Light signalling genes #
-##########################################################################
+
+### Re-use previous section to plot TFs and hormone Light signalling genes ###
+
 # PIL2, HFR1, HEC1, PAR1 and PAR2 / BEE1, BEE3, BIM1-3, BES1 and BEH2 / BBX6, 17, 21, 23, 27, 28, and 29 / CIB1, SPT, ABI5
 # List of TF signalling genes
 
@@ -2002,9 +2002,8 @@ multigeneplot <- ggplot(data = tgc, aes(x = day, y = logCPM, color = treatment, 
 
 multigeneplot
 
-#####################################################################
+
 ## Reuse previous section for Cell cycle and associated processes ###
-#####################################################################
 # Load Core Cell Cycle DE data
 cc.and.other.genes <- read_tsv("DE/selected_genes/cell_cycle_and_associated_processes_genes_for_manuscript.txt")
 
