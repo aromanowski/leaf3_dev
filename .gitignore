@@ -17,3 +17,4 @@ comp/heatmaps/*
 !comp/DE/selected_genes/
 leaf3_dev.Rproj
 .Rproj.user
+sessionInfo.txt
