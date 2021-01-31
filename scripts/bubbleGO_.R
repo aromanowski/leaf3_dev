@@ -31,7 +31,7 @@ df.bp[which(df.bp$p.value > 0.05),"p.value"] <- NA
 # obtain the p.values and assign a score
 score <- df.bp$p.value
 score[is.na(df.bp$p.value)]<-NA
-score[df.bp$p.value > 0.05]<-1
+score[df.bp$p.value < 0.05]<-1
 score[df.bp$p.value <= 0.01]<-2
 score[df.bp$p.value <= 0.001]<-3
 score[df.bp$p.value <= 0.0001]<-4
@@ -68,7 +68,7 @@ df.bp[which(df.bp$p.value > 0.05),"p.value"] <- NA
 # obtain the p.values and assign a score
 score <- df.bp$p.value
 score[is.na(df.bp$p.value)]<-NA
-score[df.bp$p.value > 0.05]<-1
+score[df.bp$p.value < 0.05]<-1
 score[df.bp$p.value <= 0.01]<-2
 score[df.bp$p.value <= 0.001]<-3
 score[df.bp$p.value <= 0.0001]<-4
