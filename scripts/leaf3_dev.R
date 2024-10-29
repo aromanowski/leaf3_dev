@@ -806,7 +806,7 @@ et_merge <- getAnnnot(et_merge, md = md)
 et_merge <- et_merge[order(et_merge$logFC, et_merge$PValue),] # Oder by logFC and p value
 top_DE<-which(et_merge$PValue < p.value & et_merge$fdr.gen < fdr.gen)
 length(top_DE)
-detags <- rownames(y)[top_DE]
+detags <- et_merge$Gene_ID[top_DE]
 png(file="smear_00_Pr_D13_FR06_vs_WL.png",    # create PNG for the MDS        
     width = 5*600,        # 10 x 600 pixels
     height = 5*600,
@@ -830,7 +830,7 @@ et_merge <- getAnnnot(et_merge, md = md)
 et_merge <- et_merge[order(et_merge$logFC, et_merge$PValue),] # Oder by logFC and p value
 top_DE<-which(et_merge$PValue < p.value & et_merge$fdr.gen < fdr.gen)
 length(top_DE)
-detags <- rownames(y)[top_DE]
+detags <- et_merge$Gene_ID[top_DE]
 png(file="smear_01_B_D16_FR06_vs_WL.png",    # create PNG for the MDS        
     width = 5*600,        # 10 x 600 pixels
     height = 5*600,
@@ -854,7 +854,7 @@ et_merge <- getAnnnot(et_merge, md = md)
 et_merge <- et_merge[order(et_merge$logFC, et_merge$PValue),] # Oder by logFC and p value
 top_DE<-which(et_merge$PValue < p.value & et_merge$fdr.gen < fdr.gen)
 length(top_DE)
-detags <- rownames(y)[top_DE]
+detags <- et_merge$Gene_ID[top_DE]
 png(file="smear_02_B_D20_FR06_vs_WL.png",    # create PNG for the MDS        
     width = 5*600,        # 10 x 600 pixels
     height = 5*600,
@@ -878,7 +878,7 @@ et_merge <- getAnnnot(et_merge, md = md)
 et_merge <- et_merge[order(et_merge$logFC, et_merge$PValue),] # Oder by logFC and p value
 top_DE<-which(et_merge$PValue < p.value & et_merge$fdr.gen < fdr.gen)
 length(top_DE)
-detags <- rownames(y)[top_DE]
+detags <- et_merge$Gene_ID[top_DE]
 png(file="smear_03_B_D20_FR18_vs_WL.png",    # create PNG for the MDS        
     width = 5*600,        # 10 x 600 pixels
     height = 5*600,
@@ -902,7 +902,7 @@ et_merge <- getAnnnot(et_merge, md = md)
 et_merge <- et_merge[order(et_merge$logFC, et_merge$PValue),] # Oder by logFC and p value
 top_DE<-which(et_merge$PValue < p.value & et_merge$fdr.gen < fdr.gen)
 length(top_DE)
-detags <- rownames(y)[top_DE]
+detags <- et_merge$Gene_ID[top_DE]
 png(file="smear_04_B_D20_FR18_vs_FR06.png",    # create PNG for the MDS        
     width = 5*600,        # 10 x 600 pixels
     height = 5*600,
